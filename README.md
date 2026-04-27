@@ -22,6 +22,28 @@ Laravel / PHP / Python / TypeScript (React・Vue 3) / Flutter / Rails
 自分のプロジェクトに使う場合は `.github/` と `.claude/` をコピーし、
 `AGENTS.md` をプロジェクトルートに置いてください。
 
+### バージョンについて
+
+**`latest` ブランチが常に最新リリースを指しているため、`latest` の使用を推奨します。**
+
+**初回取得（クローン）**
+
+```bash
+git clone -b latest --depth 1 https://github.com/ichihara-yamato/ai-native-dev-starter.git
+```
+
+**アップデート（取得済みの場合）**
+
+```bash
+git pull origin latest
+```
+
+特定バージョンを固定したい場合は `release/x.x.x` ブランチを指定してください。
+
+```bash
+git clone -b release/1.0.0 --depth 1 https://github.com/ichihara-yamato/ai-native-dev-starter.git
+```
+
 ---
 
 # エージェントへの指示ガイド
