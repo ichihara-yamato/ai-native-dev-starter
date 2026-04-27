@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Node / JS
+node_modules/
+
+# VSCode
+.vscode/
+
+# Git
+.git/
+
+# その他不要ファイル
+Thumbs.db
