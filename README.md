@@ -1,3 +1,29 @@
+# ai-native-dev-starter
+
+GitHub Copilot・Claude Code・OpenAI Codex CLI に対応した AI ネイティブ開発用の設定スターターです。
+
+## 含まれるもの
+
+| ディレクトリ / ファイル | 内容 |
+|------------------------|------|
+| `.github/copilot-instructions.md` | GitHub Copilot 共通指示 |
+| `.github/CLAUDE.md` | Claude Code 自動ロード設定 |
+| `AGENTS.md` | Codex CLI / Copilot Agent 自動ロード設定 |
+| `.github/prompts/` | 役割別プロンプト（architect / engineer / reviewer 等） |
+| `.github/rules/` | スタック別コーディングルール |
+| `.claude/commands/` | Claude Code スラッシュコマンド（スキル） |
+
+## 対応スタック
+
+Laravel / PHP / Python / TypeScript (React・Vue 3) / Flutter / Rails
+
+## 導入方法
+
+自分のプロジェクトに使う場合は `.github/` と `.claude/` をコピーし、
+`AGENTS.md` をプロジェクトルートに置いてください。
+
+---
+
 # エージェントへの指示ガイド
 
 ## 構成の考え方
@@ -199,7 +225,7 @@ Claude Code はコード出力前に作業計画を提示する。承認後に�
 
 ### 自動ロード
 
-`.github/AGENTS.md` が起動時に自動で読み込まれる。
+`AGENTS.md` が起動時に自動で読み込まれる。
 
 ---
 
@@ -254,6 +280,6 @@ codex "$(cat .github/prompts/engineer/01-laravel-impl.prompt.md)
 
 ## 参照先
 
-- コマンド定義一覧: `./command-list.md`
+- コマンド定義一覧: `.github/task-format/command-list.md`
 - ディレクトリ構造: `.github/structures/directory-map.md`
 - ルール一覧: `.github/rules/`
