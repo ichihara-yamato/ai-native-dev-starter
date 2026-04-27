@@ -1,0 +1,46 @@
+name: Update Docs Versions
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    # 書き込み権限を明示的に付与
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version
+        id: vars
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          # v1.2.3 -> release/1.2.3
+          echo "branch=release/${VERSION#v}" >> $GITHUB_OUTPUT
+
+      - name: Setup Git User
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create or update release branch
+        run: |
+          # タグの地点から release ブランチを作成して強制プッシュ
+          git checkout -B "${{ steps.vars.outputs.branch }}"
+          git push origin "${{ steps.vars.outputs.branch }}" --force
+
+      - name: Update latest branch
+        run: |
+          # latest ブランチを今回のタグと同じ地点に強制的に合わせる
+          # マージよりもこの方が「latest ＝ 最新リリース」の状態を保証しやすいです
+          git checkout -B latest
+          git reset --hard "${{ steps.vars.outputs.version }}"
+          git push origin latest --force
